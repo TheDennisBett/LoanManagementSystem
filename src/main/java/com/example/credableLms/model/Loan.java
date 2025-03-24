@@ -1,31 +1,29 @@
 package com.example.credableLms.model;
 
+import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-//import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 
-
+@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
+@Table(name = "loan")
 public class Loan {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String borrowerName;
+    @ManyToOne
+    @JoinColumn(name = "customer_id", nullable = false)
+    private Customer customer;
+
     private BigDecimal loanAmount;
-    private Double interestRate;
+    private BigDecimal interestRate;
     private Integer loanTerm;
     private LocalDate startDate;
+    private String status;
 }

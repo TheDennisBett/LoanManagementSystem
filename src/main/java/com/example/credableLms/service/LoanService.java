@@ -9,4 +9,5 @@ public interface LoanService {
     LoanResponseDto getLoanById(Long id);
     List<LoanResponseDto> getAllLoans();
     void deleteLoan(Long id);
+    LoanResponseDto updateLoanStatus(Long id, String status);
 }
